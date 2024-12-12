@@ -1,22 +1,17 @@
-import { useState } from "react";
+import { useRef } from "react";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const email = useRef();
+  const password = useRef();
 
   function handleSubmit(event) {
-    event.preventDefault(); // prevent http request made by the browser
+    event.preventDefault();
 
-    console.log(email);
-    console.log(password);
-  }
+    const enteredEmail = email.current.value;
+    const enteredPassword = password.current.value;
 
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-  }
-
-  function handlePasswordChange(event) {
-    setPassword(event.target.value);
+    console.log(enteredEmail);
+    console.log(enteredPassword);
   }
 
   return (
@@ -26,30 +21,17 @@ export default function Login() {
       <div className="control-row">
         <div className="control no-margin">
           <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            onChange={handleEmailChange}
-            value={email}
-          />
+          <input id="email" type="email" name="email" ref={email} />
         </div>
 
         <div className="control no-margin">
           <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            onChange={handlePasswordChange}
-            value={password}
-          />
+          <input id="password" type="password" name="password" ref={password} />
         </div>
       </div>
 
       <p className="form-actions">
         <button className="button button-flat">Reset</button>
-        {/* <button type="button" className="button" onClick={handleSubmit}> */}
         <button className="button">Login</button>
       </p>
     </form>
