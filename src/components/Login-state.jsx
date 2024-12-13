@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Input from "./Input";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -47,34 +48,27 @@ export default function Login() {
       <h2>Login</h2>
 
       <div className="control-row">
-        <div className="control no-margin">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            onChange={handleEmailChange}
-            onBlur={() => handleInputBlur("email")}
-            value={email}
-          />
-          <div className="control-error">
-            {!isValidEmail && <p>Please enter a valid email address</p>}
-          </div>
-        </div>
+        <Input
+          label="Email"
+          id="email"
+          type="email"
+          name="email"
+          onChange={handleEmailChange}
+          onBlur={() => handleInputBlur("email")}
+          value={email}
+          error={!isValidEmail && "Please enter a valid email"}
+        />
 
-        <div className="control no-margin">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            onChange={handlePasswordChange}
-            value={password}
-          />
-          <div className="control-error">
-            {!isValidPassword && <p>Please enter a valid password</p>}
-          </div>
-        </div>
+        <Input
+          label="Password"
+          id="password"
+          type="password"
+          name="password"
+          onChange={handlePasswordChange}
+          onBlur={() => handleInputBlur("password")}
+          value={password}
+          error={!isValidPassword && "Please enter a valid password"}
+        />
       </div>
 
       <p className="form-actions">
